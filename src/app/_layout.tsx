@@ -3,7 +3,7 @@ import { Stack } from 'expo-router';
 export default function RootLayout() {
   return (
     /* Contenedor principal de navegación en pila (Stack Navigator). 
-       "headerShown: false" oculta por defecto la barra superior en todas las pantallas a menos que se indique lo contrario. */
+        "headerShown: false" oculta por defecto la barra superior en todas las pantallas a menos que se indique lo contrario. */
     <Stack screenOptions={{ headerShown: false }}>
       
       {/* Pantalla principal de inicio (index) */}
@@ -33,6 +33,24 @@ export default function RootLayout() {
         options={{ 
           headerShown: true, 
           title: 'Realizar Pedido' 
+        }} 
+      />
+
+      {/* Pantalla de resultado del pedido */}
+      <Stack.Screen 
+        name="resultado" 
+        options={{ 
+          headerShown: true, 
+          title: 'Resultado del Pedido' 
+        }} 
+      />
+
+      {/* Pantalla de la lista de registros de Supabase */}
+      <Stack.Screen 
+        name="registros" 
+        options={{ 
+          headerShown: true, 
+          title: 'Lista de Pedidos' 
         }} 
       />
       

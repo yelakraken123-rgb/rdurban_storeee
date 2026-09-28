@@ -82,6 +82,21 @@ export default function HomeScreen() {
           <Ionicons name="chevron-forward" size={20} color="#888888" />
         </Pressable>
 
+        {/* NUEVO: Tarjeta de Lista de Pedidos (Registros de Supabase) */}
+        <Pressable 
+          style={styles.tarjetaFila} 
+          onPress={() => router.push('/registros')}
+        >
+          <View style={styles.contenedorIcono}>
+            <Ionicons name="list-outline" size={26} color="#FF2D55" />
+          </View>
+          <View style={styles.textoFilaContainer}>
+            <Text style={styles.rowTitle}>PEDIDOS GUARDADOS📦</Text>
+            <Text style={styles.rowDesc}>Consulta los registros almacenados en Supabase.</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color="#888888" />
+        </Pressable>
+
         {/* 7. Tres botones circulares juntos en fila (Catálogo, Contacto y Ubicación) */}
         <View style={styles.menuCircularContainer}>
           <Pressable style={styles.circularItem} onPress={() => router.push('/menu')}>
