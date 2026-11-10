@@ -1,6 +1,5 @@
-import { Image } from 'expo-image';
 import { SymbolView } from 'expo-symbols';
-import { Platform, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { Image, Platform, Pressable, ScrollView, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ExternalLink } from '@/components/external-link';
@@ -12,7 +11,7 @@ import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 export default function TabTwoScreen() {
-  // 1. Configuración de márgenes seguros de pantalla (SafeArea) y obtención del tema visual activo (claro u oscuro).
+  //Configuración de márgenes seguros de pantalla (SafeArea) y obtención del tema visual activo (claro u oscuro).
   const safeAreaInsets = useSafeAreaInsets();
   const insets = {
     ...safeAreaInsets,
@@ -20,7 +19,7 @@ export default function TabTwoScreen() {
   };
   const theme = useTheme();
 
-  // 2. Ajuste dinámico de los espaciados internos dependiendo de si se ejecuta en Android/iOS o en la Web.
+  //Ajuste dinámico de los espaciados internos dependiendo de si se ejecuta en Android/iOS o en la Web.
   const contentPlatformStyle = Platform.select({
     android: {
       paddingTop: insets.top,
@@ -35,13 +34,13 @@ export default function TabTwoScreen() {
   });
 
   return (
-    // 3. Contenedor principal con desplazamiento vertical adaptado al color de fondo del tema actual.
+    //Contenedor principal con desplazamiento vertical adaptado al color de fondo del tema actual.
     <ScrollView
       style={[styles.scrollView, { backgroundColor: theme.background }]}
       contentInset={insets}
       contentContainerStyle={[styles.contentContainer, contentPlatformStyle]}>
       
-      {/* 4. Cabecera superior que muestra el título de bienvenida, descripción y un botón enlazado a la documentación oficial. */}
+      {/* Cabecera superior que muestra el título de bienvenida, descripción y un botón enlazado a la documentación oficial. */}
       <ThemedView style={styles.container}>
         <ThemedView style={styles.titleContainer}>
           <ThemedText type="subtitle">Explore</ThemedText>
@@ -63,7 +62,7 @@ export default function TabTwoScreen() {
           </ExternalLink>
         </ThemedView>
 
-        {/* 5. Contenedor de secciones desplegables (Collapsibles) con guías sobre enrutamiento, plataformas, imágenes, temas y animaciones. */}
+        {/* Contenedor de secciones desplegables (Collapsibles) con guías sobre enrutamiento, plataformas, imágenes, temas y animaciones. */}
         <ThemedView style={styles.sectionsWrapper}>
           <Collapsible title="File-based routing">
             <ThemedText type="small">
@@ -126,14 +125,14 @@ export default function TabTwoScreen() {
           </Collapsible>
         </ThemedView>
 
-        {/* 6. Insignia condicional exclusiva para mostrarse únicamente cuando la app corre en entorno web. */}
+        {/* Insignia condicional exclusiva para mostrarse únicamente cuando la app corre en entorno web. */}
         {Platform.OS === 'web' && <WebBadge />}
       </ThemedView>
     </ScrollView>
   );
 }
 
-// 7. Definición de estilos encargada de estructurar anchos máximos, alineaciones, efectos de opacidad al presionar y tamaños de imágenes.
+//Definición de estilos encargada de estructurar anchos máximos, alineaciones, efectos de opacidad al presionar y tamaños de imágenes.
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,

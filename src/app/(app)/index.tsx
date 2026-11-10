@@ -9,8 +9,22 @@ import {
   Text,
   View,
 } from 'react-native';
+import { supabase } from '../../lib/supabase'; // Importación corregida a 2 niveles
 
 export default function HomeScreen() {
+
+  // Función para cerrar sesión con Supabase y redirigir al login
+  const cerrarSesion = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      alert(error.message);
+    } else {
+      // Redirige de inmediato al inicio de sesión
+      router.replace('/login');
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.contenido} showsVerticalScrollIndicator={false}>
@@ -46,7 +60,7 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* 4. Bloque de Estadísticas (Actualizado a 5 secciones) */}
+        {/* 4. Bloque de Estadísticas */}
         <View style={styles.statsContainer}>
           <View style={styles.statBox}>
             <Text style={styles.statNumber}>5</Text>
@@ -82,7 +96,7 @@ export default function HomeScreen() {
           <Ionicons name="chevron-forward" size={20} color="#888888" />
         </Pressable>
 
-        {/* NUEVO: Tarjeta de Lista de Pedidos (Registros de Supabase) */}
+        {/* Tarjeta de Lista de Pedidos (Registros de Supabase) */}
         <Pressable 
           style={styles.tarjetaFila} 
           onPress={() => router.push('/registros')}
@@ -97,27 +111,27 @@ export default function HomeScreen() {
           <Ionicons name="chevron-forward" size={20} color="#888888" />
         </Pressable>
 
-        {/* 7. Tres botones circulares juntos en fila (Catálogo, Contacto y Ubicación) */}
+        {/* 7. Tres botones circulares juntos en fila: Catálogo, Detalle y Escáner */}
         <View style={styles.menuCircularContainer}>
-          <Pressable style={styles.circularItem} onPress={() => router.push('/menu')}>
+          <Pressable style={styles.circularItem} onPress={() => router.push('/catalogo')}>
             <View style={styles.circularIcono}>
-              <Ionicons name="images-outline" size={24} color="#FF2D55" />
+              <Ionicons name="grid-outline" size={24} color="#FF2D55" />
             </View>
-            <Text style={styles.circularTexto}>💲CATALOGO</Text>
+            <Text style={styles.circularTexto}>CATÁLOGO</Text>
           </Pressable>
 
-          <Pressable style={styles.circularItem} onPress={() => router.push('/contacto')}>
+          <Pressable style={styles.circularItem} onPress={() => router.push('/detalle')}>
             <View style={styles.circularIcono}>
-              <Ionicons name="call-outline" size={24} color="#FF2D55" />
+              <Ionicons name="information-circle-outline" size={24} color="#FF2D55" />
             </View>
-            <Text style={styles.circularTexto}>😎CONTACTO😎</Text>
+            <Text style={styles.circularTexto}>DETALLE</Text>
           </Pressable>
 
-          <Pressable style={styles.circularItem} onPress={() => router.push('/ubicacion')}>
+          <Pressable style={styles.circularItem} onPress={() => router.push('/escanear')}>
             <View style={styles.circularIcono}>
-              <Ionicons name="location-outline" size={24} color="#FF2D55" />
+              <Ionicons name="scan-outline" size={24} color="#FF2D55" />
             </View>
-            <Text style={styles.circularTexto}>📍UBICACIÓN📍</Text>
+            <Text style={styles.circularTexto}>ESCANEAR</Text>
           </Pressable>
         </View>
 
@@ -133,6 +147,14 @@ export default function HomeScreen() {
             </Text>
           </View>
         </View>
+
+        {/* Botón de Cerrar Sesión */}
+        <Pressable
+          style={styles.botonCerrar}
+          onPress={cerrarSesion}
+        >
+          <Text style={styles.textoCerrar}>Cerrar sesión</Text>
+        </Pressable>
 
         {/* Footer */}
         <Text style={styles.footerText}>RDURBAN-STORE - Desarrollo Móvil</Text>
@@ -346,6 +368,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#CCCCCC',
     marginTop: 3,
+  },
+  botonCerrar: {
+    backgroundColor: '#8E3B46',
+    padding: 14,
+    borderRadius: 14,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  textoCerrar: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
   },
   footerText: {
     textAlign: 'center',

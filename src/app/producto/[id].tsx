@@ -100,12 +100,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   tarjeta: {
-    width: '100%', // Ocupa todo el ancho de lado a lado igual que el botón
+    width: '100%', 
     backgroundColor: 'rgba(20, 20, 20, 0.95)',
     borderRadius: 22,
     borderWidth: 1,
     borderColor: '#333333',
-    overflow: 'hidden', // Asegura que la imagen respete las esquinas redondeadas
+    overflow: 'hidden', 
     shadowColor: '#FF1744',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.25,
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
   },
   imagenProducto: {
     width: '100%',
-    height: 280, // Imagen más alta para aprovechar el espacio vertical
-    resizeMode: 'cover', // Llena todo el ancho sin dejar espacios negros a los lados
+    height: 280, // 
+    resizeMode: 'cover', 
   },
   infoContainer: {
     padding: 20,
